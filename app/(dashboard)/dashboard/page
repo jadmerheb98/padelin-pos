@@ -1,0 +1,77 @@
+import { Topbar } from '@/components/layout/topbar';
+import { StatCard } from '@/components/shared/stat-card';
+import { lowStock, recentOrders, stats } from '@/lib/data';
+
+export default function DashboardPage() {
+  return (
+    <section className="section-stack">
+      <Topbar title="Dashboard" subtitle="Today at the front desk" />
+
+      <div className="stat-grid">
+        {stats.map((item) => (
+          <StatCard key={item.label} {...item} />
+        ))}
+      </div>
+
+      <div className="grid-2">
+        <article className="card">
+          <div className="card-head">
+            <div className="card-title">Recent orders</div>
+            <div className="card-sub">Latest POS activity from the reception desk</div>
+          </div>
+          <div className="card-body">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentOrders.map((order) => (
+                  <tr key={order.number}>
+                    <td>{order.number}</td>
+                    <td>{order.customer}</td>
+                    <td>{order.total}</td>
+                    <td>{order.payment}</td>
+                    <td>{order.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article className="card">
+          <div className="card-head">
+            <div className="card-title">Operational alerts</div>
+            <div className="card-sub">Items and actions that need attention</div>
+          </div>
+          <div className="card-body">
+            <div className="metric-list">
+              {lowStock.map((item) => (
+                <div className="metric-row" key={item.name}>
+                  <div>
+                    <strong>{item.name}</strong>
+                    <div><span>Low stock threshold reached</span></div>
+                  </div>
+                  <span className="badge warning">{item.value}</span>
+                </div>
+              ))}
+              <div className="metric-row">
+                <div>
+                  <strong>Cash closure</strong>
+                  <div><span>Expected drawer still not reconciled</span></div>
+                </div>
+                <span className="badge danger">Pending</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
