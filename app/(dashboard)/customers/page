@@ -1,0 +1,25 @@
+import { Topbar } from '@/components/layout/topbar';
+import { customers } from '@/lib/data';
+
+export default function CustomersPage() {
+  return (
+    <section className="section-stack">
+      <Topbar title="Customers" subtitle="Walk-ins, members, and front-desk lookup" />
+      <div className="grid-3">
+        {customers.map((customer) => (
+          <article className="card" key={customer.phone}>
+            <div className="card-body">
+              <div className="badge">Member profile</div>
+              <h3 style={{ marginBottom: 8 }}>{customer.name}</h3>
+              <div className="metric-list">
+                <div className="metric-row"><strong>Phone</strong><span>{customer.phone}</span></div>
+                <div className="metric-row"><strong>Visits</strong><span>{customer.visits}</span></div>
+                <div className="metric-row"><strong>Lifetime spend</strong><span>{customer.spend}</span></div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
