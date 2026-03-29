@@ -1,0 +1,41 @@
+import Link from 'next/link';
+import { BarChart3, CreditCard, LayoutDashboard, Package2, Receipt, Settings, Users } from 'lucide-react';
+
+const items = [
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/pos', label: 'POS', icon: CreditCard },
+  { href: '/orders', label: 'Orders', icon: Receipt },
+  { href: '/products', label: 'Products', icon: Package2 },
+  { href: '/customers', label: 'Customers', icon: Users },
+  { href: '/reports', label: 'Reports', icon: BarChart3 },
+  { href: '/settings', label: 'Settings', icon: Settings }
+];
+
+export function Sidebar() {
+  return (
+    <aside className="sidebar">
+      <div className="brand">
+        <span className="brand-kicker">Premium club ops</span>
+        <span className="brand-title">PADELIN POS</span>
+        <span className="brand-sub">Desktop reception system</span>
+      </div>
+
+      <nav className="nav-list">
+        {items.map(({ href, label, icon: Icon }) => (
+          <Link className="nav-item" key={href} href={href}>
+            <Icon size={18} />
+            <span>{label}</span>
+          </Link>
+        ))}
+      </nav>
+
+      <div className="sidebar-footer">
+        <div className="sidebar-footer-title">Operational mode</div>
+        <div className="sidebar-footer-text">
+          Designed from your existing PADELIN mood: navy identity, refined rounded cards, soft shadows,
+          clean hierarchy, and an app-like premium club feel.
+        </div>
+      </div>
+    </aside>
+  );
+}
