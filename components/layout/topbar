@@ -1,0 +1,21 @@
+interface TopbarProps {
+  title: string;
+  subtitle: string;
+}
+
+export function Topbar({ title, subtitle }: TopbarProps) {
+  return (
+    <div className="topbar">
+      <div className="page-title">
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
+      </div>
+
+      <div className="topbar-actions">
+        <span className="badge">Front desk • Admin</span>
+        <button className="button secondary">Daily summary</button>
+        <button className="button primary">New sale</button>
+      </div>
+    </div>
+  );
+}
