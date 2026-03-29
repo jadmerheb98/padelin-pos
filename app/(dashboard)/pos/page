@@ -1,0 +1,86 @@
+import { Topbar } from '@/components/layout/topbar';
+import { ProductTile } from '@/components/pos/product-tile';
+import { cartItems, categories, products } from '@/lib/data';
+
+export default function PosPage() {
+  const subtotal = cartItems.reduce((sum, item) => sum + item.amount, 0);
+  const tax = subtotal * 0.11;
+  const total = subtotal + tax;
+
+  return (
+    <section className="section-stack">
+      <Topbar title="Point of Sale" subtitle="Court rentals, drinks, retail, and mixed carts" />
+
+      <div className="pos-layout">
+        <div className="pos-left">
+          <article className="card">
+            <div className="card-body">
+              <div className="toolbar">
+                <input className="search" placeholder="Search product, barcode, booking, or customer" />
+                <button className="button secondary">Attach customer</button>
+                <button className="button primary">Add court booking</button>
+              </div>
+
+              <div className="pill-row" style={{ marginTop: 14 }}>
+                {categories.map((category, index) => (
+                  <button className={`pill ${index === 0 ? 'active' : ''}`} key={category}>{category}</button>
+                ))}
+              </div>
+            </div>
+          </article>
+
+          <article className="card">
+            <div className="card-head">
+              <div className="card-title">Sellable items</div>
+              <div className="card-sub">Desktop-first product browsing designed for fast reception work</div>
+            </div>
+            <div className="card-body">
+              <div className="product-grid">
+                {products.map((product) => (
+                  <ProductTile key={product.id} {...product} />
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div className="pos-right">
+          <article className="card">
+            <div className="card-head">
+              <div className="card-title">Current cart</div>
+              <div className="card-sub">Mixed order example: booking + rentals + drinks</div>
+            </div>
+            <div className="card-body">
+              <div className="cart-list">
+                {cartItems.map((item) => (
+                  <div className="cart-item" key={item.id}>
+                    <div className="cart-item-top">
+                      <div>
+                        <h4>{item.name}</h4>
+                        <div className="cart-sub">{item.subtitle}</div>
+                      </div>
+                      <div className="cart-price">${item.amount.toFixed(2)}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+
+          <article className="total-box">
+            <div className="badge" style={{ background: 'rgba(255,255,255,.1)', color: '#fff' }}>Ready to charge</div>
+            <div className="total-row"><span>Subtotal</span><strong>${subtotal.toFixed(2)}</strong></div>
+            <div className="total-row"><span>Discount</span><strong>$0.00</strong></div>
+            <div className="total-row"><span>Tax</span><strong>${tax.toFixed(2)}</strong></div>
+            <div className="total-row grand"><span>Total</span><strong>${total.toFixed(2)}</strong></div>
+            <div style={{ display: 'grid', gap: 10, marginTop: 16 }}>
+              <button className="button primary">Take payment</button>
+              <button className="button secondary">Save as unpaid</button>
+              <button className="button secondary">Print receipt preview</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
