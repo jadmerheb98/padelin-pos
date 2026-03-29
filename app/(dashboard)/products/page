@@ -1,0 +1,41 @@
+import { Topbar } from '@/components/layout/topbar';
+import { products } from '@/lib/data';
+
+export default function ProductsPage() {
+  return (
+    <section className="section-stack">
+      <Topbar title="Products" subtitle="Retail, rentals, and court-fee catalog" />
+
+      <article className="card">
+        <div className="card-head">
+          <div className="card-title">Catalog overview</div>
+          <div className="card-sub">Starter structure for pricing, stock tracking, and sellable items</div>
+        </div>
+        <div className="card-body">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>{product.category}</td>
+                  <td>${product.price.toFixed(2)}</td>
+                  <td>{product.stock === null ? '—' : product.stock}</td>
+                  <td>{product.stock !== null && product.stock < 16 ? 'Low stock' : 'Active'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  );
+}
