@@ -1,0 +1,30 @@
+import { Topbar } from '@/components/layout/topbar';
+
+export default function SettingsPage() {
+  return (
+    <section className="section-stack">
+      <Topbar title="Settings" subtitle="Club-level configuration, tax, receipts, and operational rules" />
+      <div className="settings-grid">
+        <article className="card">
+          <div className="card-head"><div className="card-title">Club profile</div><div className="card-sub">Visible on receipts and documents</div></div>
+          <div className="card-body">
+            <div className="kv"><strong>Club name</strong><span>PADELIN</span></div>
+            <div className="kv"><strong>Branch</strong><span>Byblos, Lebanon</span></div>
+            <div className="kv"><strong>Currency</strong><span>USD</span></div>
+            <div className="kv"><strong>Receipt footer</strong><span>Thank you for playing at PADELIN</span></div>
+          </div>
+        </article>
+
+        <article className="card">
+          <div className="card-head"><div className="card-title">Operational rules</div><div className="card-sub">Safe defaults for a real club desk</div></div>
+          <div className="card-body">
+            <div className="kv"><strong>Tax mode</strong><span>11% VAT example</span></div>
+            <div className="kv"><strong>Refund policy</strong><span>Admin approval required</span></div>
+            <div className="kv"><strong>Drawer closing</strong><span>Daily reconciliation</span></div>
+            <div className="kv"><strong>Inventory alerts</strong><span>Threshold by product</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
