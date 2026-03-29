@@ -1,0 +1,29 @@
+import { Topbar } from '@/components/layout/topbar';
+
+export default function ReportsPage() {
+  return (
+    <section className="section-stack">
+      <Topbar title="Reports" subtitle="Daily sales, court revenue, cash and card visibility" />
+      <div className="grid-3">
+        <article className="card"><div className="card-body"><div className="stat-label">Daily sales</div><div className="stat-value">$1,480</div><div className="stat-meta">Peak hour: 18:00 - 20:00</div></div></article>
+        <article className="card"><div className="card-body"><div className="stat-label">Best seller</div><div className="stat-value">Water</div><div className="stat-meta">24 units today</div></div></article>
+        <article className="card"><div className="card-body"><div className="stat-label">Court utilization</div><div className="stat-value">78%</div><div className="stat-meta">Two courts, evening heavy</div></div></article>
+      </div>
+
+      <article className="card">
+        <div className="card-head">
+          <div className="card-title">Reporting starter notes</div>
+          <div className="card-sub">Use SQL views or Prisma-backed queries for the real implementation</div>
+        </div>
+        <div className="card-body">
+          <div className="metric-list">
+            <div className="metric-row"><strong>Cash vs card</strong><span>35% cash • 65% card</span></div>
+            <div className="metric-row"><strong>Court revenue</strong><span>$920 today</span></div>
+            <div className="metric-row"><strong>Retail revenue</strong><span>$560 today</span></div>
+            <div className="metric-row"><strong>Staff activity</strong><span>18 orders handled by front desk</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  );
+}
